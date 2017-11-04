@@ -37,7 +37,7 @@ export interface DOMEventSelection<T extends SelectionType> extends DOMSelection
 }
 
 export interface RootDOMSelection extends DOMEventSelection<SelectionType.Root> {
-  read(property?: Property): (with$: FantasyObservable) => FantasyObservable,
+  read(property: Property): (with$: FantasyObservable) => FantasyObservable,
   effect<T extends any[]>(property: Property, value?: T): Effect<T, SelectionType.Root>  
   select: (selector: string) => SingleDOMSelection
   selectAll: (selector: string) => MultiDOMSelection
@@ -46,13 +46,13 @@ export interface RootDOMSelection extends DOMEventSelection<SelectionType.Root> 
 }
 
 export interface SingleDOMSelection extends DOMEventSelection<SelectionType.Single> {
-  read(property?: Property): (with$: FantasyObservable) => FantasyObservable,
+  read(property: Property): (with$: FantasyObservable) => FantasyObservable,
   effect<T extends any[]>(property: Property, value?: T): Effect<T, SelectionType.Single>  
   select(selector: string): SingleDOMSelection
 }
 
 export interface MultiDOMSelection extends DOMEventSelection<SelectionType.Multi> {
-  read(property?: Property): (with$: FantasyObservable) => FantasyObservable,
+  read(property: Property): (with$: FantasyObservable) => FantasyObservable,
   effect<T extends any[]>(property: Property, value?: T): Effect<T, SelectionType.Multi>
   selectAll(selector: string): MultiDOMSelection
 }

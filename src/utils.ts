@@ -50,14 +50,10 @@ export function setter(property: Property, value: any) {
 export function getter<T extends any[]>(property: Property, args: T) {
   return function (node: any) {
     if (node) {
-      if (property) {
-        if (typeof node[property] === 'function') {
-          return (node[property] as Function).apply(node, args);
-        } else {
-          return node[property];
-        }
+      if (typeof node[property] === 'function') {
+        return (node[property] as Function).apply(node, args);
       } else {
-        return node;
+        return node[property];
       }
     } else {
       throw new Error('Selection is not in DOM');
