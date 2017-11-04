@@ -10,7 +10,6 @@ function counter({ DOM, focus$ = empty() }: { DOM: RootDOMSelection, focus$: Str
   const increment$ = from(DOM
     .select('div.increment')
     .on('click'))
-    .tap(console.log)
     .constant(+1);
   const decrement$ = from(DOM
     .select('div.decrement')
