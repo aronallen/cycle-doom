@@ -34,7 +34,7 @@ Currently invocation will be attempted regardless if the selection is in the DOM
 
 ### DOMSource.effect
 
-Generates an effect on the current selection the 1st argument is the property or method identifier like `setSelectionRange` the 2nd argument is the values that will be applied or assing to that property (depending on if it is a function or not). This is in the source, but it notably does not return anything but a description of the Effect you wish to emit. The effect will be bound to your current isolation scope, and whatever preceding selection.
+Generates an stream of effect on the current selection the 1st argument is the property or method identifier like `setSelectionRange` the 2nd argument is the values that will be applied or assing to that property (depending on if it is a function or not). This is in the source, but it notably does not return anything but a description of the Effect you wish to emit. The effect will be bound to your current isolation scope, and whatever preceding selection, and must be a returned as a DOMEffect sink.
 
 ### TODO
 
