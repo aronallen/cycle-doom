@@ -29,23 +29,10 @@ function counter({ DOM, focus$ = empty() }: { DOM: RootDOMSelection, focus$: Str
   )
   .scan((acc, n) => acc + n, 0);
 
-  const effects$ = counter$.filter(count => count === 10)
-    .constant(
-      DOM
-        .select('input')
-        .effect('focus')
-      )
-    .merge(
-      counter$.filter(count => count === 20).constant(
-        DOM
-          .select('input')
-          .effect('value', ['Hello World!'])
-      ),
-      counter$.filter(count => count === 21).constant(
-        DOM
-          .select('input')
-          .effect('setSelectionRange', [3, 6])
-    ))
+  const effects$ = from(DOM
+    .select('input')
+    .effect('focus'))
+    .sampleWith(counter$.filter(count => count === 10));
     
 
   

@@ -12,6 +12,7 @@ export enum SelectionType {
 }
 
 export type Property =  keyof Element | keyof HTMLElement | keyof HTMLInputElement;
+export type AnyElement = Element | HTMLElement | HTMLInputElement;
 
 type MouseEventNames = 'mouseup' | 'mousedown' | 'mousemove' | 'click' | 'dblclick';
 type InputEventNames = 'input';
@@ -38,7 +39,7 @@ export interface DOMEventSelection<T extends SelectionType> extends DOMSelection
 
 export interface RootDOMSelection extends DOMEventSelection<SelectionType.Root> {
   read(property: Property): (with$: FantasyObservable) => FantasyObservable,
-  effect<T extends any[]>(property: Property, value?: T): Effect<T, SelectionType.Root>  
+  effect<T extends any[]>(property: Property, value?: T): FantasyObservable  
   select: (selector: string) => SingleDOMSelection
   selectAll: (selector: string) => MultiDOMSelection
   isolateSource: (source: RootDOMSelection, scope: string) => RootDOMSelection;
@@ -47,12 +48,12 @@ export interface RootDOMSelection extends DOMEventSelection<SelectionType.Root> 
 
 export interface SingleDOMSelection extends DOMEventSelection<SelectionType.Single> {
   read(property: Property): (with$: FantasyObservable) => FantasyObservable,
-  effect<T extends any[]>(property: Property, value?: T): Effect<T, SelectionType.Single>  
+  effect<T extends any[]>(property: Property, value?: T): FantasyObservable
   select(selector: string): SingleDOMSelection
 }
 
 export interface MultiDOMSelection extends DOMEventSelection<SelectionType.Multi> {
   read(property: Property): (with$: FantasyObservable) => FantasyObservable,
-  effect<T extends any[]>(property: Property, value?: T): Effect<T, SelectionType.Multi>
+  effect<T extends any[]>(property: Property, value?: T): FantasyObservable
   selectAll(selector: string): MultiDOMSelection
 }
